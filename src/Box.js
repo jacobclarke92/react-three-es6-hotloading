@@ -10,7 +10,7 @@ export default class Box extends Component {
 			position: new Vector3(0,0,0),
 			quaternion: new Quaternion(),
 		}
-		this.sphere = new SphereGeometry(Math.random()*120, 20, 20);
+		this.sphere = new SphereGeometry(Math.random()*120, 15, 15);
 	}
 
 	render() {
@@ -18,11 +18,10 @@ export default class Box extends Component {
 		    color: this.props.color,
 		    transparent: true,
 		    opacity: this.props.opacity,
-		    vertexColors: THREE.VertexColors,
 		});
 		return (
 			<Object3D quaternion={this.state.quaternion} position={this.state.position || new Vector3(0,0,0)}>
-				<Mesh position={this.props.position} geometry={this.sphere} material={sphereMaterial} />
+				<Mesh position={this.props.position} geometry={this.sphere} material={sphereMaterial} scale={this.props.scale} />
 			</Object3D>
 		);
 	}
