@@ -12,8 +12,8 @@ export default class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			width: 1024,
-			height: 768,
+			width: window.innerWidth,
+			height: window.innerHeight,
 			rotationangle: 0,
 			cupcakedata: {
 				position: new Vector3(0,0,0), 
@@ -44,7 +44,11 @@ export default class App extends Component {
 		});
 
 		if(this.boxes.length < 100) {
-			const position = new Vector3(Math.random()*1000 - 500,Math.random()*800 - 400,Math.random()*-800 + 200)
+			const position = new Vector3(
+				Math.random()*this.state.width - this.state.width/2,
+				Math.random()*this.state.height - this.state.height/2,
+				Math.random()*-800 + 200
+			);
 			const aimPosition = new Vector3(position.x, position.y ,position.z);
 			this.boxes.push(<Box />);
 			this.boxProps.push({
