@@ -1,6 +1,6 @@
 This is a test project using react-three with webpack's hot reloading capabilities
 
-![View CodePen demo](http://imgur.com/FSStDvZ)
+![View CodePen demo](http://imgur.com/FSStDvZ.png)
 
 [View CodePen demo](http://s.codepen.io/jacobclarke92/debug/WQOGdK)
 
