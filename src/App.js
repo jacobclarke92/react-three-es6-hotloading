@@ -33,7 +33,7 @@ export default class App extends Component {
 		n += 0.01;
 
 		const cupcakedata = this.state.cupcakedata;
-		const rotationangle = n * 0.0005;
+		const rotationangle = n * 0.8;
 		cupcakedata.quaternion.setFromEuler(new Euler(rotationangle, rotationangle*3, 0));
 		cupcakedata.position.x = 300 * Math.sin(rotationangle);
 		cupcakedata.position.y = 300 * Math.cos(rotationangle);
@@ -41,9 +41,9 @@ export default class App extends Component {
 		this.setState({
 			rotationangle,
 			cupcakedata,
-		})
+		});
 
-		if(this.boxes.length < 80) {
+		if(this.boxes.length < 100) {
 			const position = new Vector3(Math.random()*1000 - 500,Math.random()*800 - 400,Math.random()*-800 + 200)
 			const aimPosition = new Vector3(position.x, position.y ,position.z);
 			this.boxes.push(<Box />);
@@ -53,18 +53,18 @@ export default class App extends Component {
 				opacity: 0,
 				aimOpacity: Math.random()*0.6 + 0.2,
 				scale: 0,
-				aimScale: Math.random()*1 + 0.2,
+				aimScale: Math.random()*1.5 + 0.2,
 				color: Math.random()*0xFFFFFF,
 			});
 		}
-		for(let i=0; i< this.boxes.length; i ++) {
-		this.boxes.map((box) => {
+
+		this.boxProps.map((box) => {
 
 			if(Math.random() < 0.1) {
 				box.aimPosition.set(
-					box.aimPosition.x + Math.random()*100 - 50,
-					box.aimPosition.y + Math.random()*100 - 50,
-					box.aimPosition.z + Math.random()*100 - 50
+					box.aimPosition.x + Math.random()*50 - 25,
+					box.aimPosition.y + Math.random()*50 - 25,
+					box.aimPosition.z + Math.random()*50 - 25
 				);
 			}
 
@@ -84,11 +84,11 @@ export default class App extends Component {
 	render() {
 		const aspectratio = this.state.width / this.state.height;
 		const cameraprops = {
-			fov: 80 + Math.cos(n)*10, 
+			fov: 80 + Math.cos(n)*50, 
 			aspect: aspectratio, 
 			near: 1, 
 			far: 5000,
-    		position: new Vector3(0,0,600), 
+    		position: new Vector3(Math.cos(n)*500,Math.sin(n)*500, 800 + Math.cos(n)*-1000), 
     		lookat: new Vector3(0,0,0),
     	};
 
@@ -96,7 +96,7 @@ export default class App extends Component {
     		<Scene width={this.state.width} height={this.state.height} camera="maincamera" background={0xDCC3D2} >
     			<AmbientLight color={0x111111} />
     			<PerspectiveCamera name="maincamera" {...cameraprops} />
-    			<Cupcake {...this.state.cupcakedata} />
+    			{/*<Cupcake {...this.state.cupcakedata} />*/}
     			{Children.map(this.boxes, (box, i) => 
 					React.cloneElement(box, this.boxProps[i])
 				)}
