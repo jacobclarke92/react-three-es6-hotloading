@@ -13,9 +13,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/assets/creamPink.png', function(req, res) {
+  res.sendFile(path.join(__dirname, '/assets/creamPink.png'));
+});
 
-app.get('/main.css', function(req, res) {
-  res.sendFile(path.join(__dirname, '/main.css'));
+app.get('/assets/cupCake.png', function(req, res) {
+  res.sendFile(path.join(__dirname, '/assets/cupCake.png'));
 });
 
 app.get('*', function(req, res) {
