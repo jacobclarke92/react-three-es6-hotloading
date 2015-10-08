@@ -1,10 +1,10 @@
 This is a test project using react-three with webpack's hot reloading capabilities
 
 Install dependencies
-npm install
+`npm install`
 
 Start server
-npm run start
+`npm run start`
 
 View at
-localhost:3000
+`localhost:3000`
